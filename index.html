@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz App | Tugas Rutin 6</title>
+    <meta name="description" content="Kuis interaktif seputar dasar pemrograman web dengan skor otomatis, timer, dan high score.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="quiz-app">
+        <header class="app-header">
+            <h1>Quiz Web Dasar</h1>
+            <button type="button" class="theme-btn" id="themeBtn" aria-label="Ganti mode tampilan">🌓</button>
+        </header>
+
+        <!-- ===== LAYAR 1: MULAI ===== -->
+        <section id="startScreen" class="screen">
+            <p class="lead">Jawab 5 pertanyaan acak seputar HTML, CSS, dan JavaScript. Kamu punya 15 detik untuk tiap soal.</p>
+            <p class="high-score-box">🏆 High score: <strong id="highScoreStart">0</strong> / 5</p>
+            <button type="button" class="btn" id="startBtn">Mulai Quiz</button>
+        </section>
+
+        <!-- ===== LAYAR 2: QUIZ ===== -->
+        <section id="quizScreen" class="screen hidden" aria-live="polite">
+            <div class="quiz-meta">
+                <span id="questionCounter">Soal 1 / 5</span>
+                <span class="timer" id="timer">⏱ 15</span>
+            </div>
+
+            <div class="progress-track" role="progressbar" aria-label="Progres quiz" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressTrack">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <article class="question-card" id="questionCard">
+                <h2 id="questionText"></h2>
+                <div class="options" id="options"></div>
+                <p class="feedback" id="feedback"></p>
+            </article>
+
+            <button type="button" class="btn hidden" id="nextBtn">Soal Berikutnya</button>
+        </section>
+
+        <!-- ===== LAYAR 3: HASIL ===== -->
+        <section id="resultScreen" class="screen hidden">
+            <h2>Quiz Selesai!</h2>
+            <p class="final-score"><span id="finalScore">0</span> / 5</p>
+            <p id="resultMessage" class="lead"></p>
+            <p class="high-score-box">🏆 High score: <strong id="highScoreResult">0</strong> / 5</p>
+            <button type="button" class="btn" id="restartBtn">Ulangi Quiz</button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root, [data-theme="light"] {
+    --bg: #f4f1ea;
+    --card: #ffffff;
+    --text: #23262b;
+    --muted: #6b7280;
+    --border: #e3dccb;
+    --accent: #1f6f54;
+    --accent-dark: #17543f;
+    --correct-bg: #dff3e8;
+    --correct-border: #1f9d62;
+    --wrong-bg: #fde4e2;
+    --wrong-border: #d6453d;
+}
+
+[data-theme="dark"] {
+    --bg: #14181f;
+    --card: #1f2733;
+    --text: #f2f0ea;
+    --muted: #a6adb8;
+    --border: #2c3644;
+    --accent: #3ec9a0;
+    --accent-dark: #2fae89;
+    --correct-bg: #14382b;
+    --correct-border: #3ec9a0;
+    --wrong-bg: #402021;
+    --wrong-border: #ef6b63;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.quiz-app {
+    width: 100%;
+    max-width: 560px;
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 1.8rem 1.5rem;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.4rem;
+}
+
+h1 { font-size: clamp(1.3rem, 4vw, 1.7rem); }
+h2 { font-size: clamp(1.05rem, 3vw, 1.3rem); line-height: 1.4; }
+
+.theme-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background-color: var(--card);
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.screen { animation: fadeSlide 0.4s ease; }
+.hidden { display: none !important; }
+
+@keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.lead { color: var(--muted); margin-bottom: 1rem; line-height: 1.6; }
+
+.high-score-box {
+    background-color: var(--bg);
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    padding: 0.7rem 1rem;
+    margin-bottom: 1.3rem;
+}
+
+.btn {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: none;
+    border-radius: 12px;
+    background-color: var(--accent);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+[data-theme="dark"] .btn { color: #0f1420; }
+.btn:hover { background-color: var(--accent-dark); transform: translateY(-2px); }
+
+/* Meta & timer */
+.quiz-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+}
+
+.timer { font-weight: 700; color: var(--accent); }
+.timer.danger { color: var(--wrong-border); }
+
+/* Progress bar */
+.progress-track {
+    height: 8px;
+    border-radius: 999px;
+    background-color: var(--bg);
+    overflow: hidden;
+    margin-bottom: 1.3rem;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background-color: var(--accent);
+    border-radius: 999px;
+    transition: width 0.4s ease;
+}
+
+/* Soal & pilihan */
+.question-card { margin-bottom: 1.2rem; }
+.question-card.animate { animation: fadeSlide 0.4s ease; }
+
+.options { display: flex; flex-direction: column; gap: 0.7rem; margin: 1.1rem 0; }
+
+.option-btn {
+    text-align: left;
+    padding: 0.85rem 1rem;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    background-color: var(--card);
+    color: var(--text);
+    font-size: 0.97rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.option-btn:hover:not(:disabled) { border-color: var(--accent); transform: translateX(4px); }
+.option-btn:disabled { cursor: default; }
+
+.option-btn.correct { background-color: var(--correct-bg); border-color: var(--correct-border); }
+.option-btn.wrong { background-color: var(--wrong-bg); border-color: var(--wrong-border); }
+
+.feedback { font-weight: 600; min-height: 1.4em; font-size: 0.92rem; }
+
+/* Hasil */
+.final-score {
+    font-size: clamp(2.4rem, 8vw, 3.2rem);
+    font-weight: 700;
+    color: var(--accent);
+    margin: 0.4rem 0 0.8rem;
+}
+
+@media (max-width: 420px) {
+    .quiz-app { padding: 1.4rem 1.1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+}
